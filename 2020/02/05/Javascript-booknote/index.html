@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Leafsu's Blogs" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="《JavaScript高级程序设计(第3版) (图灵程序设计丛书)》作者：泽卡斯(Zakas. Nicholas C.)  第1章  BOM window对象  核心/Global对象 location对象 navigator对象第2章　在HTML中使用JavaScript 2.5　小结 &amp;gt; 位置 784使用 defer 属性 可以 让 脚本 在 文档 完全 呈现 之后 再 执行。 延迟">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript高级程序设计(第3版)">
+<meta property="og:url" content="https://github.com/leafsu3340.github.io/2020/02/05/Javascript-booknote/index.html">
+<meta property="og:site_name" content="Leafsu&#39;s Blogs">
+<meta property="og:description" content="《JavaScript高级程序设计(第3版) (图灵程序设计丛书)》作者：泽卡斯(Zakas. Nicholas C.)  第1章  BOM window对象  核心/Global对象 location对象 navigator对象第2章　在HTML中使用JavaScript 2.5　小结 &amp;gt; 位置 784使用 defer 属性 可以 让 脚本 在 文档 完全 呈现 之后 再 执行。 延迟">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-05T06:16:10.529Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript高级程序设计(第3版)">
+<meta name="twitter:description" content="《JavaScript高级程序设计(第3版) (图灵程序设计丛书)》作者：泽卡斯(Zakas. Nicholas C.)  第1章  BOM window对象  核心/Global对象 location对象 navigator对象第2章　在HTML中使用JavaScript 2.5　小结 &amp;gt; 位置 784使用 defer 属性 可以 让 脚本 在 文档 完全 呈现 之后 再 执行。 延迟">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/leafsu3340.github.io/2020/02/05/Javascript-booknote/">
+
+
+
+
+
+  <title>JavaScript高级程序设计(第3版) | Leafsu's Blogs</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leafsu's Blogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Good Good Study, Day Day up.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/leafsu3340.github.io/2020/02/05/Javascript-booknote/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leafsu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leafsu's Blogs">
+    </span>
+
+    
+      <header class="post-header">
+        <!--
+        
+          <i class="fa fa-thumb-tack"></i>
+          <font color=7D26CD>置顶</font>
+        
+        -->
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JavaScript高级程序设计(第3版)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-05T14:07:56+08:00">
+                2020-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  10.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  39
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>《JavaScript高级程序设计(第3版) (图灵程序设计丛书)》<br>作者：泽卡斯(Zakas. Nicholas C.)</p>
+</blockquote>
+<h2 id="第1章-BOM"><a href="#第1章-BOM" class="headerlink" title="第1章  BOM"></a>第1章  BOM</h2><ul>
+<li>window对象  核心/Global对象</li>
+<li>location对象</li>
+<li>navigator对象<h2 id="第2章-在HTML中使用JavaScript"><a href="#第2章-在HTML中使用JavaScript" class="headerlink" title="第2章　在HTML中使用JavaScript"></a>第2章　在HTML中使用JavaScript</h2></li>
+<li>2.5　小结 &gt; 位置 784<br>使用 defer 属性 可以 让 脚本 在 文档 完全 呈现 之后 再 执行。 延迟 脚本 总是 按照 指定 它们 的 顺序 执行。</li>
+<li>2.5　小结 &gt; 位置 785<br>使用 async 属性 可以 表示 当前 脚本 不必 等待 其他 脚本， 也不 必 阻塞 文档 呈现。 不能 保证 异步 脚本 按照 它们 在 页面 中 出现 的 顺序 执行。<h2 id="第4章-变量、作用域和内存问题"><a href="#第4章-变量、作用域和内存问题" class="headerlink" title="第4章　变量、作用域和内存问题"></a>第4章　变量、作用域和内存问题</h2></li>
+<li>4.4　小结 &gt; 位置 3005<br>“标记 清除” 是 目前 主流 的 垃圾 收集 算法， 这种 算法 的 思想 是给 当前 不使 用的 值 加上 标记， 然后 再回 收 其 内存。</li>
+<li>4.4　小结 &gt; 位置 3007<br>另一种 垃圾 收集 算法 是“ 引用 计数”， 这种 算法 的 思想 是 跟踪 记录 所有 值 被 引用 的 次数。 JavaScript 引擎 目前 都不 再 使用 这种 算法； 但在 IE 中 访问 非 原生 JavaScript 对象（ 如 DOM 元素） 时， 这种 算法 仍然 可能 会 导致 问题。<h2 id="第8章-BOM"><a href="#第8章-BOM" class="headerlink" title="第8章　BOM"></a>第8章　BOM</h2></li>
+<li>8.1　window对象 &gt; 位置 6833<br>BOM 的 核心 对象 是 window， 它 表示 浏览器 的 一个 实例。</li>
+<li>8.1　window对象 &gt; 位置 6882<br>如果 页面 中 包含 框架， 则 每个 框架 都 拥有 自己的 window 对象， 并且 保存 在 frames 集合 中。</li>
+<li>8.3　navigator对象 &gt; 位置 7430<br>最早 由 Netscape Navigator 2. 0 引入 的 navigator 对象， 现在 已经 成为 识别 客户 端 浏览器 的 事实 标准。</li>
+<li>8.3　navigator对象 &gt; 位置 7539<br>检测 浏览器 中 是否 安装 了 特定 的 插件 是 一种 最 常见 的 检测 例程。 对于 非 IE 浏览器， 可以 使用 plugins 数组 来 达到 这个 目的。</li>
+<li>8.3　navigator对象 &gt; 位置 7569<br>检测 IE 中的 插件 比较 麻烦， 因为 IE 不支持 Netscape 式 的 插件。 在 IE 中 检测 插件 的 唯一 方式 就是 使用 专有 的 ActiveXObject 类型， 并 尝试 创建 一个 特定 插件 的 实例。 IE 是以 COM 对象 的 方式 实现 插件 的， 而 COM 对象 使用 唯一 标识符 来 标识。</li>
+<li>8.3　navigator对象 &gt; 位置 7607<br>Firefox 2 为 navigator 对象 新增 了 registerContentHandler() 和 registerProtocolHandler() 方法（ 这 两个 方法 是在 HTML5 中 定义 的， 相关 内容 将 在 第 22 章 讨论）。 这 两个 方法 可以 让 一个 站点 指明 它可 以 处理 特定 类型 的 信息。</li>
+<li>8.6　小结 &gt; 位置 7741<br>浏览器 对象 模型（ BOM） 以 window 对象 为 依托， 表示 浏览器 窗口 以及 页面 可见 区域。</li>
+<li>8.6　小结 &gt; 位置 7745<br>在使 用 框架 时， 每个 框架 都有 自己的 window 对象 以及 所有 原生 构造 函数 及其他 函数 的 副本。</li>
+<li>8.6　小结 &gt; 位置 7749<br>top 对象 始终 指向 最 外围 的 框架， 也就是 整个 浏览器 窗口。</li>
+<li>8.6　小结 &gt; 位置 7751<br>parent 对象 表示 包含 当前 框架 的 框架， 而 self 对象 则 回 指 window。</li>
+<li>8.6　小结 &gt; 位置 7761<br>screen 对象 中 保存 着 与 客户 端 显示器 有关 的 信息，</li>
+<li>8.6　小结 &gt; 位置 7763<br>history 对象 为 访问 浏览器 的 历史 记录<h2 id="第9章-客户端检测"><a href="#第9章-客户端检测" class="headerlink" title="第9章　客户端检测"></a>第9章　客户端检测</h2></li>
+<li>9.1　能力检测 &gt; 位置 7775<br>最 常用 也 最为 人们 广泛 接受 的 客户 端 检测 形式 是 能力 检测（ 又称 特性 检测）。</li>
+<li>9.2　怪癖检测 &gt; 位置 7879<br>与 能力 检测 类似， 怪癖 检测（ quirks detection） 的 目标 是 识别 浏览器 的 特殊 行为。</li>
+<li>9.2　怪癖检测 &gt; 位置 7880<br>不同， 怪癖 检测 是 想要 知道 浏览器 存在 什么 缺陷（“ 怪癖” 也就是 bug）。 这</li>
+<li>9.3　用户代理检测 &gt; 位置 7905<br>在 每一 次 HTTP 请求 过程中， 用户 代理 字符串 是 作为 响应 首部 发送 的， 而且 该 字符串 可以 通过 JavaScript 的 navigator. userAgent 属性 访问。</li>
+<li>9.3　用户代理检测 &gt; 位置 7907<br>访问。 在 服务器 端， 通过 检测 用户 代理 字符串 来 确定 用户 使用 的 浏览器 是一 种 常用 而且 广为 接受 的 做法。 而在 客户 端， 用户 代理 检测 一般 被 当作 一种 万不得已 才 用的 做法， 其 优先级 排在 能力 检测 和（ 或） 怪癖 检测 之后。</li>
+<li>9.3　用户代理检测 &gt; 位置 7912<br>HTTP 规范（ 包括 1. 0 和 1. 1 版） 明确 规定， 浏览器 应该 发送 简短 的 用户 代理 字符串， 指明 浏览器 的 名称 和 版 本号。</li>
+<li>9.3　用户代理检测 &gt; 位置 7986<br>Gecko 是 Firefox 的 呈现 引擎。</li>
+<li>9.3　用户代理检测 &gt; 位置 8033<br>Safari 的 呈现 引擎 叫 WebKit，</li>
+<li>9.3　用户代理检测 &gt; 位置 8065<br>谷 歌 公司 的 Chrome 浏览器 以 WebKit 作为 呈现 引擎， 但 使用 了 不同 的 JavaScript 引擎。</li>
+<li>9.3　用户代理检测 &gt; 位置 8110<br>移动 操作系统 iOS 和 Android 默认 的 浏览器 都 基于 WebKit， 而且 都 像 它们 的 桌面 版 一样， 共享 相同 的 基本 用户 代理 字符串 格式。</li>
+<li>9.3　用户代理检测 &gt; 位置 8127<br>用户 代理 字符串 来 检测 特定 的 浏览器 并不是 一件 轻松 的 事。</li>
+<li>9.3　用户代理检测 &gt; 位置 8136<br>确切 知道 浏览器 的 名字 和 版本 号 不如 确切 知道 它 使用 的 是什么 呈现 引擎。</li>
+<li>9.3　用户代理检测 &gt; 位置 8139<br>要 编写 的 脚本 将 主要 检测 五大 呈现 引擎： IE、 Gecko、 WebKit、 KHTML 和 Opera。</li>
+<li>9.3　用户代理检测 &gt; 位置 8648<br>用户 代理 检测 是 客户 端 检测 的 最后 一个 选择。 只要 可能， 都应 该 优先 采用 能力 检测 和 怪癖 检测。</li>
+<li>9.4　小结 &gt; 位置 8667<br>在 决定 使用 哪种 客户 端 检测 方法 时， 一般应 优先 考虑 使用 能力 检测。 怪癖 检测 是 确定 应该 如何 处理 代码 的 第二 选择。 而用 户 代理 检测 则是 客户 端 检测 的 最后 一种 方案， 因为 这种 方法 对 用户 代理 字符串 具有 很强 的 依赖性。<h2 id="第10章-DOM"><a href="#第10章-DOM" class="headerlink" title="第10章　DOM"></a>第10章　DOM</h2></li>
+<li>位置 8676<br>IE 中的 所有 DOM 对象 都是 以 COM 对象 的 形式 实现 的。</li>
+<li>10.1　节点层次 &gt; 位置 8693<br>DOM1 级 定义 了 一个 Node 接口， 该 接口 将由 DOM 中的 所有 节点 类型 实现。</li>
+<li>10.1　节点层次 &gt; 位置 8697<br>类型。 JavaScript 中的 所有 节点 类型 都 继承 自 Node 类型， 因此 所有 节点 类型 都 共享 着 相同 的 基本 属性 和 方法。</li>
+<li>10.1　节点层次 &gt; 位置 8698<br>每个 节点 都有 一个 nodeType 属性， 用于 表明 节点 的 类型。 节点 类型 由 在 Node 类型 中 定义 的 下列 12 个数 值 常量 来 表示， 任何 节点 类型 必 居 其一：</li>
+<li>10.1　节点层次 &gt; 位置 8720<br>为了 确保 跨 浏览器 兼容， 最好 还 是将 nodeType 属性 与 数字 值 进行 比较，</li>
+<li>10.1　节点层次 &gt; 位置 8722<br>if (someNode. nodeType == 1){ //适用于 所有 浏览器 alert(“ Node is an element.”); }</li>
+<li>10.1　节点层次 &gt; 位置 8744<br>每个 节点 都有 一个 childNodes 属性， 其中 保存 着 一个 NodeList 对象。</li>
+<li>10.1　节点层次 &gt; 位置 8746<br>NodeList 是一 种类 数组 对象， 用于 保存 一组 有序 的 节点， 可以 通过 位置 来访 问这 些 节点。 请注意， 虽然 可以 通过 方 括号 语法 来 访问 NodeList 的 值， 而且 这个 对象 也有 length 属性， 但它 并不是 Array 的 实例。</li>
+<li>10.1　节点层次 &gt; 位置 8765<br>//在 IE8 及之 前 版本 中 无效 var arrayOfNodes = Array. prototype. slice. call( someNode. childNodes, 0);</li>
+<li>10.1　节点层次 &gt; 位置 8767<br>IE8 及 更早 版本 将 NodeList 实现 为 一个 COM 对象，</li>
+<li>10.1　节点层次 &gt; 位置 8769<br>要想 在 IE 中将 NodeList 转换 为 数组， 必须 手动 枚举 所有 成员。</li>
+<li>10.1　节点层次 &gt; 位置 8778<br>每个 节点 都有 一个 parentNode 属性，</li>
+<li>10.1　节点层次 &gt; 位置 8783<br>节点。 通过 使用 列表 中 每个 节点 的 previousSibling 和 nextSibling 属性， 可以 访问 同一 列表 中的 其他 节点。 列表</li>
+<li>10.1　节点层次 &gt; 位置 8794<br>父 节点 与其 第一个 和 最后 一个 子 节点 之间 也 存在 特殊 关系。 父 节点 的 firstChild 和 lastChild 属性 分别 指向 其 childNodes 列表 中的 第一个 和 最后 一个 节点。</li>
+<li>10.1　节点层次 &gt; 位置 8813<br>所有 节点 都有 的 最后 一个 属性 是 ownerDocument， 该 属性 指向 表示 整个 文档 的 文档 节点。</li>
+<li>10.1　节点层次 &gt; 位置 8846<br>appendChild() 和 insertBefore() 方法 都 只 插入 节点， 不会 移 除 节点。</li>
+<li>10.1　节点层次 &gt; 位置 8852<br>使用 replaceChild() 插入 一个 节点 时， 该 节点 的 所有 关系 指针 都会 从 被 它 替换 的 节点 复制 过来。</li>
+<li>10.1　节点层次 &gt; 位置 8853<br>过来。 尽管 从技术上 讲， 被 替换 的 节点 仍然 还在 文档 中， 但它 在 文档 中 已经 没有 了 自己的 位置。</li>
+<li>10.1　节点层次 &gt; 位置 8854<br>只想 移 除 而非 替换 节点， 可以 使用 removeChild() 方法。</li>
+<li>10.1　节点层次 &gt; 位置 8859<br>与 使用 replaceChild() 方法 一样， 通过 removeChild() 移 除 的 节点 仍然 为 文档 所有， 只不过 在 文档 中 已经 没有 了 自己的 位置。</li>
+<li>10.1　节点层次 &gt; 位置 8911<br>其 子 节点 可能 是 一个 DocumentType（ 最多 一个）、 Element（ 最多 一个）、 ProcessingInstruction 或 Comment。</li>
+<li>10.1　节点层次 &gt; 位置 9002<br>接下来 要 介绍 的 3 个 属性 都与 对 网页 的 请求 有关， 它们 是 URL、 domain 和 referrer。</li>
+<li>10.1　节点层次 &gt; 位置 9005<br>URL 属性 中 包含 页面 完整 的 URL（ 即地 址 栏中 显示 的 URL）， domain 属性 中 只 包含 页面 的 域名， 而 referrer 属性 中 则 保存 着 链接 到 当前 页面 的 那个 页面 的 URL。</li>
+<li>10.2　DOM操作技术 &gt; 位置 10216<br>理解 NodeList 及其“ 近亲” NamedNodeMap 和 HTMLCollection， 是 从 整体 上 透彻 理解 DOM 的 关键 所在。</li>
+<li>10.2　DOM操作技术 &gt; 位置 10235<br>如果 想要 迭代 一个 NodeList， 最好 是 使用 length 属性 初始化 第二个 变量， 然后 将 迭代 器 与 该 变量 进行 比较，</li>
+<li>10.3　小结 &gt; 位置 10251<br>最 基本 的 节点 类型 是 Node， 用于 抽象 地表 示 文档 中 一个 独立 的 部分； 所有 其他 类型 都 继承 自 Node。<h2 id="第11章-DOM扩展"><a href="#第11章-DOM扩展" class="headerlink" title="第11章　DOM扩展"></a>第11章　DOM扩展</h2></li>
+<li>11.3　HTML5 &gt; 位置 10505<br>charset 属性 表示 文档 中 实际 使用 的 字符 集， 也可以 用来 指定 新 字符 集。 默认 情况下， 这个 属 性的 值 为” UTF- 16”， 但可以 通过&lt; meta&gt; 元素、 响应 头部 或 直接 设置 charset 属性 修改 这个 值。</li>
+<li>11.3　HTML5 &gt; 位置 10681<br>在 使用 innerHTML、 outerHTML 属性 和 insertAdjacentHTML() 方法 时， 最好 先手 工 删除 要被 替换 的 元素 的 所有 事件 处理 程序 和 JavaScript 对象 属性（</li>
+<li>11.3　HTML5 &gt; 位置 10712<br>//让 元素 可见 document. forms[ 0]. scrollIntoView();</li>
+<li>11.4　专有扩展 &gt; 位置 10730<br>要 强制 浏览器 以 某种 模式 渲染 页面， 可以 使用 HTTP 头部 信息 X- UA- Compatible， 或 通过 等价 的&lt; meta&gt; 标签 来 设置：</li>
+<li>11.4　专有扩展 &gt; 位置 10910<br>scrollIntoViewIfNeeded( alignCenter)： 只在 当前 元素 在 视 口中 不 可见 的 情况下， 才 滚动 浏览器 窗口 或 容器 元素， 最终 让 它可 见。</li>
+<li>11.4　专有扩展 &gt; 位置 10914<br>scrollByLines( lineCount)： 将 元素 的 内容 滚动 指 定的 行 高， lineCount 值 可以 是 正值， 也可以 是 负值。</li>
+<li>11.4　专有扩展 &gt; 位置 10917<br>scrollByPages( pageCount)： 将 元素 的 内容 滚动 指定 的 页面 高度， 具体 高度 由 元素 的 高度 决定。</li>
+<li>11.4　专有扩展 &gt; 位置 10919<br>是， scrollIntoView() 和 scrollIntoViewIfNeeded() 的 作用 对象 是 元素 的 容器， 而 scrollByLines() 和 scrollByPages() 影响 的 则是 元素 自身。</li>
+<li>11.5　小结 &gt; 位置 10932<br>Element Traversal， 为 DOM 元素 定义 了 额外 的 属性， 让开 发 人员 能够 更 方便 地 从 一个 元素 跳到 另一个 元素。 之所以 会 出现 这个 扩展， 是因为 浏览器 处理 DOM 元素 间 空白 符 的 方式 不一样。<h2 id="第12章-DOM2和DOM3"><a href="#第12章-DOM2和DOM3" class="headerlink" title="第12章　DOM2和DOM3"></a>第12章　DOM2和DOM3</h2></li>
+<li>位置 10940<br>DOM1 级 主要 定义 的 是 HTML 和 XML 文档 的 底层 结构。 DOM2 和 DOM3 级 则在 这个 结构 的 基础上 引入 了 更多 的 交互 能力， 也 支持 了 更 高级的 XML 特性。</li>
+<li>12.1　DOM变化 &gt; 位置 10951<br>DOM2 级 和 3 级 的 目的在于 扩展 DOM API， 以 满足 操作 XML 的 所有 需求， 同时 提供 更好 的 错误 处理 及 特性 检测 能力。 从 某种 意义上 讲， 实现 这一 目的 很大 程度 意味着 对 命名 空间 的 支持。“ DOM2 级 核心” 没有 引入 新 类型， 它 只是 在 DOM1 级 的 基础上 通过 增加 新方法 和 新 属性 来 增强 了 既有 类型。“ DOM3 级 核心” 同样 增强 了 既有 类型， 但也 引入 了 一些 新 类型。</li>
+<li>12.2　样式 &gt; 位置 11613<br>offsetHeight： 元素 在 垂直 方向 上 占用 的 空间 大小， 以 像素 计。 包括 元素 的 高度、（ 可见 的） 水平 滚动 条 的 高度、 上边 框 高度 和 下边 框 高度。</li>
+<li>12.2　样式 &gt; 位置 11615<br>offsetWidth： 元素 在 水平 方向 上 占用 的 空间 大小， 以 像素 计。 包括 元素 的 宽度、（ 可见 的） 垂直 滚动 条 的 宽度、 左边 框 宽度 和 右边 框 宽度。</li>
+<li>12.2　样式 &gt; 位置 11617<br>offsetLeft： 元素 的 左 外 边框 至 包含 元素 的 左 内 边框 之间 的 像素 距离。</li>
+<li>12.2　样式 &gt; 位置 11618<br>offsetTop： 元素 的 上 外 边框 至 包含 元素 的 上 内 边框 之间 的 像素 距离。</li>
+<li>12.2　样式 &gt; 位置 11619<br>其中， offsetLeft 和 offsetTop 属性 与 包含 元素 有关， 包含 元素 的 引用 保存 在 offsetParent 属性 中。</li>
+<li>12.2　样式 &gt; 位置 11629<br>要想 知道 某个 元素 在 页 面上 的 偏移量， 将 这个 元素 的 offsetLeft 和 offsetTop 与其 offsetParent 的 相同 属性 相加， 如此 循环 直至 根 元素， 就可以 得到 一个 基本 准确 的 值。</li>
+<li>12.2　样式 &gt; 位置 11657<br>其中， clientWidth 属性 是 元素 内容 区 宽度 加上 左右 内 边距 宽度；</li>
+<li>12.2　样式 &gt; 位置 11658<br>clientHeight 属性 是 元素 内容 区 高度 加上 上下 内 边距 高度。</li>
+<li>12.2　样式 &gt; 位置 11685<br>scrollHeight： 在 没有 滚动 条 的 情况下， 元素 内容 的 总 高度。</li>
+<li>12.2　样式 &gt; 位置 11686<br>scrollWidth： 在 没有 滚动 条 的 情况下， 元素 内容 的 总 宽度。</li>
+<li>12.2　样式 &gt; 位置 11688<br>scrollLeft： 被 隐藏 在内 容 区域 左侧 的 像 素数。 通过 设置 这个 属性 可以 改变 元素 的 滚动 位置。</li>
+<li>12.2　样式 &gt; 位置 11689<br>scrollTop： 被 隐藏 在内 容 区域 上方 的 像 素数。 通过 设置 这个 属性 可以 改变 元素 的 滚动 位置。</li>
+<li>12.2　样式 &gt; 位置 11733<br>IE、 Firefox 3+、 Safari 4+、 Opera 9. 5 及 Chrome 为 每个 元素 都 提供 了 一个 getBoundingClientRect() 方法。 这个 方法 返回 会 一个 矩形 对象， 包含 4 个 属性： left、 top、 right 和 bottom。 这些 属性 给出 了 元素 在 页面 中 相对于 视 口 的 位置。</li>
+<li>12.2　样式 &gt; 位置 11758<br>信息。 一般来说， right 和 left 的 差值 与 offsetWidth 的 值 相等， 而 bottom 和 top 的 差值 与 offsetHeight 相等。</li>
+<li>12.3　遍历 &gt; 位置 11788<br>“DOM2 级 遍历 和 范围” 模块 定义 了 两个 用于 辅助 完成 顺序 遍历 DOM 结构 的 类型： NodeIterator 和 TreeWalker。 这 两个 类型 能够 基于 给定 的 起点 对 DOM 结构 执行 深度 优先（ depth- first） 的 遍历 操作。</li>
+<li>12.3　遍历 &gt; 位置 11821<br>NodeIterator 类型 是 两者 中 比较 简单 的 一个， 可以 使用 document. createNodeIterator() 方法 创建 它的 新 实例。</li>
+<li>12.3　遍历 &gt; 位置 11880<br>NodeIterator 类型 的 两个 主要 方法 是 nextNode() 和 previousNode()。</li>
+<li>12.3　遍历 &gt; 位置 11886<br>节点。 当 遍历 到 DOM 子 树 的 最后 一个 节点 时， nextNode() 返回 null。</li>
+<li>12.3　遍历 &gt; 位置 11925<br>TreeWalker 是 NodeIterator 的 一个 更 高级的 版本。 除了 包括 nextNode() 和 previousNode() 在内 的 相同 的 功能 之外， 这个 类型 还 提供 了 下列 用于 在 不同 方向 上 遍历 DOM 结构 的 方法。</li>
+<li>12.5　小结 &gt; 位置 12438<br>要 确定 某个 元素 的 计算 样式（ 包括 应用 给 它的 所有 CSS 规则）， 可以 使用 getComputedStyle() 方法。</li>
+<li>12.5　小结 &gt; 位置 12440<br>IE 不支持 getComputedStyle() 方法， 但 为所 有 元素 都 提供 了 能够 返回 相同 信息 currentStyle 属性。</li>
+<li>12.5　小结 &gt; 位置 12441<br>可以 通过 document. styleSheets 集合 访问 样式 表。</li>
+<li>12.5　小结 &gt; 位置 12451<br>使用范围 选区 可以 在 删除 文档 中 某些 部分 的 同时， 保持 文档 结构 的 格式 良好， 或者 复制 文档 中的 相应 部分。<h2 id="第13章-事件"><a href="#第13章-事件" class="headerlink" title="第13章　事件"></a>第13章　事件</h2></li>
+<li>位置 12455<br>JavaScript 与 HTML 之间 的 交互 是 通过 事件 实现 的。</li>
+<li>位置 12457<br>这种 在传 统 软件 工程 中 被称为 观察员 模式 的 模型， 支持 页面 的 行为（ JavaScript 代码） 与 页面 的 外观（ HTML 和 CSS 代码） 之间 的 松散 耦合。</li>
+<li>13.1　事件流 &gt; 位置 12471<br>事件 流 描述 的 是 从 页面 中 接收 事件 的 顺序。</li>
+<li>13.1　事件流 &gt; 位置 12513<br>“DOM2 级 事件” 规定 的 事件 流 包括 三个 阶段： 事件 捕获 阶段、 处于 目标 阶段 和 事件 冒泡 阶段。 首先</li>
+<li>13.2　事件处理程序 &gt; 位置 12626<br>“DOM2 级 事件” 定义 了 两个 方法， 用于 处理 指定 和 删除 事件 处理 程序 的 操作： addEventListener() 和 removeEventListener()。</li>
+<li>13.2　事件处理程序 &gt; 位置 12628<br>所有 DOM 节点 中 都 包含 这 两个 方法， 并且 它们 都 接受 3 个 参数： 要 处理 的 事件 名、 作为 事件 处理 程序 的 函数 和 一个 布尔 值。 最后 这个 布尔 值 参数 如果 是 true， 表示 在 捕获 阶段 调用 事件 处理 程序； 如果 是 false， 表示 在 冒泡 阶段 调用 事件 处理 程序。</li>
+<li>13.2　事件处理程序 &gt; 位置 12654<br>传入 removeEventListener() 中的 事件 处理 程序 函数 必须 与 传入 addEventListener() 中的 相同，</li>
+<li>13.2　事件处理程序 &gt; 位置 12666<br>IE 实现 了 与 DOM 中 类似 的 两个 方法： attachEvent() 和 detachEvent()。 这 两个 方法 接受 相同 的 两个 参数： 事件 处理 程序 名称 与 事件 处理 程序 函数。</li>
+<li>13.5　内存和性能 &gt; 位置 14571<br>对“ 事件 处理 程序 过多” 问题 的 解决 方案 就是 事件 委托。</li>
+<li>13.5　内存和性能 &gt; 位置 14620<br>每当 将 事件 处理 程序 指定 给 元素 时， 运行 中的 浏览器 代码 与 支持 页面 交互 的 JavaScript 代码 之间 就会 建立 一个 连接。 这种 连接 越多， 页面 执行 起来 就 越慢。</li>
+<li>13.6　模拟事件 &gt; 位置 14682<br>是，“ DOM2 级 事件” 并没有 专门 规定 键盘 事件， 后来 的“ DOM3 级 事件” 中 才 正式 将其 作为 一种 事件 给出 规定。 IE9 是 目前 唯一 支持 DOM3 级 键盘 事件 的 浏览器。 不过， 在 其他 浏览器 中， 在 现有 方法 的 基础上， 可以 通过 几种 方式 来 模拟 键盘 事件。</li>
+<li>13.6　模拟事件 &gt; 位置 14695<br>创建 鼠标 事件 对象 的 方法 是 为 createEvent() 传入 字符串” MouseEvents”。 返回 的 对象 有一个 名为 initMouseEvent() 方法， 用于 指定 与 该 鼠标 事件 有关 的 信息。</li>
+<li>13.6　模拟事件 &gt; 位置 14744<br>DOM3 级 规定， 调用 createEvent() 并 传入” KeyboardEvent” 就可以 创建 一个 键盘 事件。 返回 的 事件 对象 会 包含 一个 initKeyEvent() 方法，</li>
+<li>13.6　模拟事件 &gt; 位置 14775<br>在 Firefox 中， 调用 createEvent() 并 传入” KeyEvents” 就可以 创建 一个 键盘 事件。 返回 的 事件 对象 会 包含 一个 initKeyEvent() 方法， 这个 方法 接受 下列 10 个 参数。</li>
+<li>13.6　模拟事件 &gt; 位置 14820<br>虽然 鼠标 事件 和 键盘 事件 是在 浏览器 中最 经常 模拟 的 事件， 但 有时候 同样 需要 模拟 变动 事件 和 HTML 事件。 要 模拟 变动 事件， 可以 使用 createEvent(“ MutationEvents”) 创建 一个 包含 initMutationEvent() 方法 的 变动 事件 对象。</li>
+<li>13.6　模拟事件 &gt; 位置 14842<br>DOM3 级 还 定义 了“ 自定义 事件”。 自定义 事件 不 是由 DOM 原生 触发 的， 它的 目的 是 让开 发 人员 创建 自己的 事件。 要 创建 新的 自定义 事件， 可以 调用 createEvent(“ CustomEvent”)。 返回 的 对象 有一个 名为 initCustomEvent() 的 方法，</li>
+<li>13.6　模拟事件 &gt; 位置 14869<br>调用 document. createEventObject() 方法 可以 在 IE 中 创建 event 对象。 但 与 DOM 方式 不同 的 是， 这个 方法 不接受 参数， 结果 会 返回 一个 通用 的 event 对象。 然后， 你 必须 手工 为 这个 对象 添加 所有 必要 的 信息（ 没有 方法 来 辅助 完成 这一 步骤）。 最后 一步 就是 在 目标 上 调用 fireEvent() 方法， 这个 方法 接受 两个 参数： 事件 处理 程序 的 名称 和 event 对象。</li>
+<li>13.7　小结 &gt; 位置 14903<br>建立 在 事件 冒泡 机制 之上 的 事件 委托 技术， 可以 有效地 减少 事件 处理 程序 的 数量。</li>
+<li>13.7　小结 &gt; 位置 14904<br>建议 在 浏览器 卸载 页面 之前 移 除 页面 中的 所有 事件 处理 程序。<h2 id="第15章-使用Canvas绘图"><a href="#第15章-使用Canvas绘图" class="headerlink" title="第15章　使用Canvas绘图"></a>第15章　使用Canvas绘图</h2></li>
+<li>15.1　基本用法 &gt; 位置 16229<br>要在 这块 画布（ canvas） 上 绘图， 需要 取得 绘图 上下文。</li>
+<li>15.1　基本用法 &gt; 位置 16242<br>使用 toDataURL() 方法， 可以 导出 在&lt; canvas&gt; 元素 上 绘制 的 图像。</li>
+<li>15.3　WebGL &gt; 位置 16736<br>浏览器 中 使用 的 WebGL 就是 基于 OpenGL ES 2. 0 制定 的。</li>
+<li>15.3　WebGL &gt; 位置 16743<br>WebGL 引入 了 一个 概念， 叫 类型 化 数组（ typed arrays）。 类型 化 数组 也是 数组， 只不过 其 元素 被 设置 为 特定 类型 的 值。</li>
+<li>15.3　WebGL &gt; 位置 16745<br>类型 化 数组 的 核心 就是 一个 名为 ArrayBuffer 的 类型。<h2 id="第16章-HTML5脚本编程"><a href="#第16章-HTML5脚本编程" class="headerlink" title="第16章　HTML5脚本编程"></a>第16章　HTML5脚本编程</h2></li>
+<li>16.1　跨文档消息传递 &gt; 位置 17264<br>跨 文档 消息 传送（ cross- document messaging）， 有时候 简称 为 XDM， 指的 是在 来自 不同 域 的 页面 间 传递 消息。</li>
+<li>16.1　跨文档消息传递 &gt; 位置 17267<br>XDM 的 核心 是 postMessage() 方法。</li>
+<li>16.2　原生拖放 &gt; 位置 17377<br>只有 简单 的 拖放 而 没有 数据 变化 是 没有 什么 用的。 为了 在 拖放 操作 时 实现 数据 交换， IE 5 引入 了 dataTransfer 对象， 它是 事件 对象 的 一个 属性， 用于 从 被 拖动 元素 向 放置 目标 传递 字符串 格式 的 数据。 因为 它是 事件 对象 的 属性， 所以 只能 在 拖放 事件 的 事件 处理 程序 中 访问 dataTransfer 对象。 在 事件 处理 程序 中， 可以 使用 这个 对象 的 属性 和 方法 来 完善 拖放 功能。 目前， HTML5 规范 草案 也 收入 了 dataTransfer 对象。</li>
+<li>16.4　历史状态管理 &gt; 位置 17754<br>过）。 HTML5 通过 更新 history 对象 为 管理 历史 状态 提供 了 方便。<h2 id="第17章-错误处理与调试"><a href="#第17章-错误处理与调试" class="headerlink" title="第17章　错误处理与调试"></a>第17章　错误处理与调试</h2></li>
+<li>17.2　错误处理 &gt; 位置 17944<br>如果 提供 finally 子句， 则 catch 子句 就成 了 可选 的（ catch 或 finally 有一个 即可）。 IE7 及 更早 版本 中有 一个 bug： 除非 有 catch 子句， 否则 finally 中的 代码 永远 不会 执行。</li>
+<li>17.2　错误处理 &gt; 位置 17951<br>请 读者 务必 要 记住， 只要 代码 中 包含 finally 子句， 那么 无论 try 还是 catch 语句 块 中的 return 语句 都将 被 忽略。</li>
+<li>17.2　错误处理 &gt; 位置 18035<br>在 遇到 throw 操作 符 时， 代码 会 立即 停止 执行。 仅 当 有 try- catch 语句 捕 获到 被 抛出 的 值 时， 代码 才会 继续 执行。</li>
+<li>17.2　错误处理 &gt; 位置 18100<br>说到 抛出 错误 与 捕获 错误， 我们 认为 只 应该 捕获 那些 你 确切 地 知道 该 如何 处理 的 错误。 捕获 错误 的 目的在于 避免 浏览器 以 默认 方式 处理 它们； 而 抛出 错误 的 目的在于 提供 错误 发生 具体 原因 的 消息。</li>
+<li>17.2　错误处理 &gt; 位置 18103<br>任何 没有 通过 try- catch 处理 的 错误 都会 触发 window 对象 的 error 事件。 这个 事件 是 Web 浏览器 最早 支持 的 事件 之一， IE、 Firefox 和 Chrome 为 保持 向后 兼容， 并没有 对这 个 事件 作 任何 修改（ Opera 和 Safari 不支持 error 事件）。</li>
+<li>17.2　错误处理 &gt; 位置 18169<br>使用 全等 和 非 全等 操作 符， 可以避免 发生 因为 使用 相等 和 不相等 操作 符 引发 的 类型 转换 错误， 因此 我们 强烈 推荐 使用。<h2 id="第20章-JSON"><a href="#第20章-JSON" class="headerlink" title="第20章　JSON"></a>第20章　JSON</h2></li>
+<li>位置 20001<br>把 JSON（ JavaScript Object Notation， JavaScript 对象 表示 法）</li>
+<li>位置 20004<br>关于 JSON， 最重要的 是要 理解 它是 一种 数据 格式， 不是 一种 编程 语言。</li>
+<li>20.1　语法 &gt; 位置 20015<br>最简单 的 JSON 数据 形式 就是 简单 值。 例如， 下面 这个 值 是 有效 的 JSON 数据：</li>
+<li>20.1　语法 &gt; 位置 20019<br>JavaScript 字符串 与 JSON 字符串 的 最大 区别 在于， JSON 字符串 必须 使用 双 引号（ 单 引号 会 导致 语法 错误）。</li>
+<li>20.1　语法 &gt; 位置 20020<br>布尔 值 和 null 也是 有效 的 JSON 形式。</li>
+<li>20.1　语法 &gt; 位置 20025<br>这 虽然 是 开发 人员 在 JavaScript 中 创建 对象 字面 量 的 标准 方式， 但 JSON 中的 对象 要求 给 属性 加引号。</li>
+<li>20.1　语法 &gt; 位置 20032<br>对象 的 属性 必须 加 双 引号， 这 在 JSON 中 是 必需 的。</li>
+<li>20.1　语法 &gt; 位置 20039<br>与 JavaScript 不同， JSON 中 对象 的 属性 名 任何时候 都 必须 加 双 引号。 手工 编写 JSON 时， 忘了 给 对象 属性 名 加 双 引号 或者 把 双 引号 写成 单 引号 都是 常见 的 错误。</li>
+<li>20.2　解析与序列化 &gt; 位置 20075<br>早期 的 JSON 解析 器 基本上 就是 使用 JavaScript 的 eval() 函数。 由于 JSON 是 JavaScript 语法 的 子集， 因此 eval() 函数 可以 解析、 解释 并 返回 JavaScript 对象 和 数组。 ECMAScript 5 对 解析 JSON 的 行为 进行 规范， 定义 了 全局 对象 JSON。</li>
+<li>20.2　解析与序列化 &gt; 位置 20108<br>JSON. stringify() 除了 要 序列 化 的 JavaScript 对象 外， 还可以 接收 另外 两个 参数， 这 两个 参数 用于 指定 以 不同 的 方式 序列 化 JavaScript 对象。 第一个 参数 是个 过滤器， 可以 是一 个数 组， 也可以 是一 个 函数； 第二个 参数 是一 个 选项， 表示 是否 在 JSON 字符串 中 保留 缩进。</li>
+<li>20.2　解析与序列化 &gt; 位置 20178<br>JSON. stringify() 还是 不能 满足 对 某些 对象 进行 自定义 序列 化 的 需求。 在 这些 情况下， 可以 通过 对象 上 调用 toJSON() 方法， 返回 其 自身 的 JSON 数据 格式。 原生 Date 对象 有一个 toJSON() 方法， 能够 将 JavaScript 的 Date 对象 自动 转换 成 ISO 8601 日期 字符串（ 与 在 Date 对象 上 调用 toISOString() 的 结果 完全 一样）。</li>
+<li>20.2　解析与序列化 &gt; 位置 20209<br>JSON. parse() 方法 也可以 接收 另一个 参数， 该 参数 是一 个 函数， 将 在 每个 键值 对儿 上 调用。<h2 id="第21章-Ajax与Comet"><a href="#第21章-Ajax与Comet" class="headerlink" title="第21章　Ajax与Comet"></a>第21章　Ajax与Comet</h2></li>
+<li>位置 20247<br>Ajax， 是对 Asynchronous JavaScript + XML 的 简写。</li>
+<li>位置 20250<br>Ajax 技术 的 核心 是 XMLHttpRequest 对象（ 简称 XHR）， 这是 由 微软 首先 引入 的 一个 特性， 其他 浏览器 提供 商 后来 都 提供 了 相同 的 实现。</li>
+<li>21.1　XMLHttpRequest对象 &gt; 位置 20315<br>这里 的 send() 方法 接收 一个 参数， 即要 作为 请求 主体 发送 的 数据。 如果不 需要 通过 请求 主体 发送 数据， 则 必须 传入 null， 因为 这个 参数 对 有些 浏览器 来说 是 必需 的。</li>
+<li>21.1　XMLHttpRequest对象 &gt; 位置 20369<br>代码 利用 DOM 0 级 方法 为 XHR 对象 添加 了事 件 处理 程序， 原因 是 并非 所有 浏览器 都 支持 DOM 2 级 方法。 与其 他事 件 处理 程序 不同， 这里 没 有向 onreadystatechange 事件 处理 程序 中 传递 event 对象； 必须 通过 XHR 对象 本身 来 确定 下一步 该 怎么 做。</li>
+<li>21.1　XMLHttpRequest对象 &gt; 位置 20430<br>对 XHR 而言， 位于 传入 open() 方法 的 URL 末尾 的 查询 字符串 必须 经过 正确 的 编码 才行。</li>
+<li>21.1　XMLHttpRequest对象 &gt; 位置 20487<br>与 GET 请求 相比， POST 请求 消耗 的 资源 会 更多 一些。 从 性能 角度 来看， 以 发送 相同 的 数据 计， GET 请求 的 速度 最多 可达到 POST 请求 的 两倍。</li>
+<li>21.2　XMLHttpRequest 2级 &gt; 位置 20495<br>现代 Web 应用 中频 繁 使用 的 一项 功能 就是 表单 数据 的 序列 化， XMLHttpRequest 2 级 为此 定义 了 FormData 类型。</li>
+<li>21.4　跨源资源共享 &gt; 位置 20618<br>通过 XHR 实现 Ajax 通信 的 一个 主要 限制， 来源于 跨 域 安全 策略。</li>
+<li>21.4　跨源资源共享 &gt; 位置 20620<br>CORS（ Cross- Origin Resource Sharing， 跨 源 资源 共享） 是 W3C 的 一个 工作 草案， 定义 了 在必 须 访问 跨 源 资源 时， 浏览器 与 服务器 应该 如何 沟通。</li>
+<li>21.4　跨源资源共享 &gt; 位置 20621<br>CORS 背后 的 基本 思想， 就是 使用 自定义 的 HTTP 头部 让 浏览器 与 服务器 进行 沟通， 从而 决定 请求 或 响应 是 应该 成功， 还是 应该 失败。</li>
+<li>21.4　跨源资源共享 &gt; 位置 20641<br>使 CSRF（ Cross- Site Request Forgery， 跨 站点 请求 伪造）</li>
+<li>21.4　跨源资源共享 &gt; 位置 20642<br>XSS（ Cross- Site Scripting， 跨 站点 脚本）</li>
+<li>21.5　其他跨域技术 &gt; 位置 20807<br>Comet 是 Alex Russell1 发明 的 一个 词儿， 指的 是一 种 更 高级的 Ajax 技术（ 经常 也有 人 称为“ 服务器 推送”）。 Ajax 是 一种 从 页 面向 服务器 请求 数据 的 技术， 而 Comet 则是 一种 服务器 向 页面 推送 数据 的 技术。</li>
+<li>21.5　其他跨域技术 &gt; 位置 20811<br>有两 种 实现 Comet 的 方式： 长 轮 询 和 流。</li>
+<li>21.5　其他跨域技术 &gt; 位置 20829<br>在 Firefox、 Safari、 Opera 和 Chrome 中， 通过 侦听 readystatechange 事件 及 检测 readyState 的 值 是否 为 3， 就可以 利用 XHR 对象 实现 HTTP 流。</li>
+<li>21.5　其他跨域技术 &gt; 位置 20861<br>SSE（ Server- Sent Events， 服务器 发送 事件） 是 围绕 只读 Comet 交互 推出 的 API 或者 模式。 SSE API 用于 创建 到 服务器 的 单向 连接， 服务器 通过 这个 连接 可以 发送 任意 数量 的 数据。 服务器 响应 的 MIME 类型 必须 是 text/ event- stream， 而且 是 浏览器 中的 JavaScript API 能 解析 格式 输出。 SSE 支持 短 轮 询、 长 轮 询 和 HTTP 流， 而且 能在 断开 连接 时 自动 确定 何时 重新 连接。</li>
+<li>21.5　其他跨域技术 &gt; 位置 20867<br>SSE 的 JavaScript API 与其 他 传递 消息 的 JavaScript API 很 相似。 要 预订 新的 事件 流， 首先 要 创建 一个 新的 EventSource 对象， 并 传 进 一个 入口 点：</li>
+<li>21.5　其他跨域技术 &gt; 位置 20982<br>面对 某个 具体 的 用 例， 在 考虑 是 使用 SSE 还是 使用 Web Sockets 时， 可以 考虑 如下 几个 因素。 首先， 你是 否 有 自由度 建立 和 维护 Web Sockets 服务器？ 因为 Web Socket 协议 不同于 HTTP， 所以 现有 服务器 不能 用于 Web Socket 通信。 SSE 倒是 通过 常规 HTTP 通信， 因此 现有 服务器 就可以 满足 需求。</li>
+<li>21.5　其他跨域技术 &gt; 位置 20984<br>第二个 要 考虑 的 问题是 到底 需 不需要 双向 通信。 如果 用 例 只需 读取 服务器 数据（ 如 比赛 成绩）， 那么 SSE 比较 容易 实现。 如果 用 例 必须 双向 通信（ 如 聊天 室）， 那么 Web Sockets 显然 更好。 别 忘了， 在 不能 选择 Web Sockets 的 情况下， 组合 XHR 和 SSE 也是 能 实现 双向 通信 的。</li>
+<li>21.6　安全 &gt; 位置 20994<br>对于 未被 授权 系统 有权 访问 某个 资源 的 情况， 我们 称之为 CSRF（ Cross- Site Request Forgery， 跨 站点 请求 伪造）。</li>
+<li>21.6　安全 &gt; 位置 20998<br>要求 以 SSL 连接 来访 问 可以 通过 XHR 请求 的 资源。 要求 每一 次 请求 都要 附带 经过 相应 算法 计算 得到 的 验证 码。</li>
+<li>21.7　小结 &gt; 位置 21017<br>同源 策略 是对 XHR 的 一个 主要 约束， 它为 通信 设置 了“ 相同 的 域、 相同 的 端口、 相同 的 协议” 这一 限制。 试图 访问 上述 限制 之外 的 资源， 都会 引发 安全 错误， 除非 采用 被 认可 的 跨 域 解决 方案。 这个 解决 方案 叫做 CORS（ Cross- Origin Resource Sharing， 跨 源 资源 共享）， IE8 通过 XDomainRequest 对象 支持 CORS， 其他 浏览器 通过 XHR 对象 原生 支持 CORS。 图像 Ping 和 JSONP 是 另外 两种 跨 域 通信 的 技术， 但不 如 CORS 稳妥。<h2 id="第22章-高级技巧"><a href="#第22章-高级技巧" class="headerlink" title="第22章　高级技巧"></a>第22章　高级技巧</h2></li>
+<li>22.1　高级函数 &gt; 位置 21112<br>作用域 安全 的 构造 函数。</li>
+<li>22.1　高级函数 &gt; 位置 21193<br>在 第一次 调用 的 过程中， 该 函数 会被 覆盖 为 另外 一个 按 合适 方式 执行 的 函数， 这样 任何 对 原函数 的 调用 都不 用 再经 过 执行 的 分支 了。</li>
+<li>22.1　高级函数 &gt; 位置 21220<br>第二 种 实现 惰性 载入 的 方式 是在 声明 函数 时 就 指定 适当 的 函数。</li>
+<li>22.1　高级函数 &gt; 位置 21242<br>惰性 载入 函数 的 优点 是 只在 执行 分支 代码 时 牺牲 一点儿 性能。</li>
+<li>22.1　高级函数 &gt; 位置 21307<br>与 函数 绑 定 紧密 相关 的 主题 是 函数 柯 里 化（ function currying）， 它 用于 创建 已经 设置 好了 一个 或 多个 参数 的 函数。 函数 柯 里 化 的 基本 方法 和 函数 绑 定 是 一样 的： 使用 一个 闭 包 返回 一个 函数。</li>
+<li>22.2　防篡改对象 &gt; 位置 21399<br>使用 Object. preventExtensions() 方法 可以 改变 这个 行为， 让你 不能 再给 对象 添加 属性 和 方法。</li>
+<li>22.2　防篡改对象 &gt; 位置 21408<br>使用 Object. istExtensible() 方法 还可以 确定 对象 是否 可以 扩展。</li>
+<li>22.2　防篡改对象 &gt; 位置 21417<br>要 密封 对象， 可以 使用 Object. seal() 方法。</li>
+<li>22.2　防篡改对象 &gt; 位置 21425<br>使用 Object. isSealed() 方法 可以 确定 对象 是否 被 密封 了。</li>
+<li>22.2　防篡改对象 &gt; 位置 21426<br>因为 被 密封 的 对象 不可 扩展， 所以 用 Object. isExtensible() 检测 密封 的 对象 也会 返回 false。</li>
+<li>22.2　防篡改对象 &gt; 位置 21431<br>最 严格 的 防 篡改 级别 是 冻结 对象（ frozen object）。</li>
+<li>22.2　防篡改对象 &gt; 位置 21435<br>ECMAScript 5 定义 的 Object. freeze() 方法 可以 用来 冻结 对象。</li>
+<li>22.2　防篡改对象 &gt; 位置 21440<br>当然， 也有 一个 Object. isFrozen() 方法 用于 检测 冻结 对象。</li>
+<li>22.3　高级定时器 &gt; 位置 21468<br>定时器 对 队列 的 工作 方式 是， 当 特定 时间 过去 后 将 代码 插入。 注意， 给 队列 添加 代码 并不 意味着 对 它 立刻 执行， 而 只能 表示 它 会 尽快 执行。</li>
+<li>22.3　高级定时器 &gt; 位置 21479<br>关于 定时器 要 记住 的 最重要的 事情 是， 指定 的 时间 间隔 表示 何时 将 定时器 的 代码 添加 到 队列， 而 不是 何时 实际 执行 代码。</li>
+<li>22.3　高级定时器 &gt; 位置 21509<br>为了 避免 setInterval() 的 重复 定时器 的 这 2 个 缺点， 你 可以 用 如下 模式 使用 链式 setTimeout() 调用。</li>
+<li>22.3　高级定时器 &gt; 位置 21531<br>其中 一个 限制 是 长时间 运行 脚本 的 制约， 如果 代码 运行 超过 特定 的 时间 或者 特定 语句 数量 就 不让 它 继续 执行。</li>
+<li>22.3　高级定时器 &gt; 位置 21532<br>如果 代码 达到 了 这个 限制， 会 弹出 一个 浏览器 错误 的 对话框， 告诉 用户 某个 脚本 会用 过长 的 时间 执行， 询问 是 允许 其 继续 执行 还是 停止 它。 所有 JavaScript 开发 人员 的 目标 就是， 确保 用户 永远 不 会在 浏览器 中看 到这 个 令人费解 的 对话框。 定时器 是 绕开 此 限制 的 方法 之一。</li>
+<li>22.3　高级定时器 &gt; 位置 21546<br>当你 发现 某个 循环 占用 了 大量 时间， 同时 对于 上述 两个 问题， 你的 回答 都是“ 否”， 那么 你就 可以 使用 定时器 分割 这个 循环。 这是 一种 叫做 数组 分块（ array chunking） 的 技术， 小块 小块 地处 理 数组， 通常 每次 一 小块。</li>
+<li>22.3　高级定时器 &gt; 位置 21586<br>一旦 某个 函数 需要 花 50ms 以上 的 时间 完成， 那么 最好 看看 能否 将 任务 分割 为 一系列 可以 使用 定时器 的 小 任务。</li>
+<li>22.4　自定义事件 &gt; 位置 21653<br>事件 是 JavaScript 与 浏览器 交互 的 主要 途径。</li>
+<li>22.4　自定义事件 &gt; 位置 21659<br>事件 是与 DOM 交互 的 最 常见 的 方式， 但它 们 也可以 用于 非 DOM 代码 中—— 通过 实现 自定义 事件。<h2 id="第23章-离线应用与客户端存储"><a href="#第23章-离线应用与客户端存储" class="headerlink" title="第23章　离线应用与客户端存储"></a>第23章　离线应用与客户端存储</h2></li>
+<li>23.1　离线检测 &gt; 位置 21942<br>线， HTML5 为此 定义 了 一个 navigator. onLine 属性， 这个 属性 值 为 true 表示 设备 能 上网， 值 为 false 表示 设备 离 线。</li>
+<li>23.2　应用缓存 &gt; 位置 21973<br>HTML5 的 应用 缓存（ application cache）， 或者 简称 为 appcache， 是 专门 为 开发 离 线 Web 应用 而 设计 的。</li>
+<li>23.2　应用缓存 &gt; 位置 21989<br>虽然 应用 缓存 的 意图 是 确保 离 线 时 资源 可用， 但也 有 相应 的 JavaScript API 让你 知道 它 都在 做 什么。 这个 API 的 核心 是 applicationCache 对象，</li>
+<li>23.3　数据存储 &gt; 位置 22051</li>
+</ul>
+<ol start="2">
+<li>cookie 的 构成</li>
+</ol>
+<ul>
+<li>23.3　数据存储 &gt; 位置 22084<br>因为 设置 了 secure 标志， 这个 cookie 只能 通过 SSL 连接 才能 传输。</li>
+<li>23.3　数据存储 &gt; 位置 22290<br>在 IE5. 0 中， 微软 通过 一个 自定义 行为 引入 了 持久 化 用户 数据 的 概念。 用户 数据 允许 每个 文档 最多 128KB 数据， 每个 域名 最多 1MB 数据。 要使 用 持久 化 用户 数据， 首先 必须 如下 所示， 使用 CSS 在某 个 元素 上 指定 userData 行为：<h2 id="第24章-最佳实践"><a href="#第24章-最佳实践" class="headerlink" title="第24章　最佳实践"></a>第24章　最佳实践</h2></li>
+<li>24.1　可维护性 &gt; 位置 23140<br>所以， 最佳 的 方法 便是 永远 不修 改 不 是由 你 所有 的 对象。</li>
+<li>24.2　性能 &gt; 位置 23249<br>访问 全局 变量 总是 要比 访问 局部 变量 慢， 因为 需要 遍历 作用域 链。 只要 能 减少 花费 在 作用域 链 上 的 时间， 就能 增加 脚本 的 整体 性能。</li>
+<li>24.2　性能 &gt; 位置 23250<br>避免 全局 查找</li>
+<li>24.2　性能 &gt; 位置 23269<br>避免 with 语句</li>
+<li>24.2　性能 &gt; 位置 23274<br>必须 使用 with 语句 的 情况 很少， 因为 它 主要 用于 消除 额外 的 字符。</li>
+<li>24.2　性能 &gt; 位置 23287<br>　 选择 正确 方法</li>
+<li>24.2　性能 &gt; 位置 23290<br>在 计算机 科学 中， 算法 的 复杂度 是 使用 O 符号 来 表示 的。 最简单、 最 快捷 的 算法 是 常 数值 即 O( 1)。</li>
+<li>24.2　性能 &gt; 位置 23335<br>减值 迭代—— 大多数 循环 使用 一个 从 0 开始、 增加 到 某个 特定 值 的 迭代 器。 在 很多 情况下， 从 最大值 开始， 在 循环 中 不断 减值 的 迭代 器 更加 高效。</li>
+<li>24.2　性能 &gt; 位置 23337<br>简化 终止 条件—— 由于 每次 循环 过程 都会 计算 终止 条件， 所以 必须 保证 它 尽可能 快。 也就是说 避免 属性 查找 或 其他 O( n) 的 操作。</li>
+<li>24.2　性能 &gt; 位置 23338<br>简化 循环 体—— 循环 体 是 执行 最多 的， 所以 要 确保 其 被 最大限度 地 优化。 确保 没有 某些 可以 被 很容易 移出 循环 的 密集 计算。</li>
+<li>24.2　性能 &gt; 位置 23340<br>使用 后 测试 循环—— 最 常用 for 循环 和 while 循环 都是 前 测试 循环。 而 如 do- while 这种 后 测试 循环， 可以避免 最初 终止 条件 的 计算， 因此 运行 更快。</li>
+<li>24.2　性能 &gt; 位置 23367<br>如果 循环 中的 迭代 次数 不能 事先 确定， 那 可以 考虑 使用 一种 叫做 Duff 装置 的 技术。</li>
+<li>24.2　性能 &gt; 位置 23400<br>当 JavaScript 代码 想 解析 JavaScript 的 时候 就会 存在 双重 解释 惩罚。 当 使用 eval() 函数 或者是 Function 构造 函数 以及 使用 setTimeout() 传 一个 字符串 参数 时 都会 发生 这种 情况。</li>
+<li>24.3　部署 &gt; 位置 23633<br>当 谈及 JavaScript 文件 压缩， 其实 在 讨论 两个 东西： 代码 长度 和 配 重（ Wire weight）。</li>
+<li>24.3　部署 &gt; 位置 23718<br>mod_ gzip 和 mod_ deflate 都可以 节省 大约 70% 的 JavaScript 文件 大小。 这 很大 程度 上 是因为 JavaScript 都是 文本 文件， 因此 可以 非常 有效地 进行 压缩。<h2 id="第25章-新兴的API"><a href="#第25章-新兴的API" class="headerlink" title="第25章　新兴的API"></a>第25章　新兴的API</h2></li>
+<li>25.1　requestAnimationFrame() &gt; 位置 23750<br>Firefox 4 最早 为 JavaScript 动画 添加 了 一个 新 API， 即 mozRequestAnimationFrame()。 这个 方法 会 告诉 浏览器： 有一个 动画 开始 了。 进而 浏览器 就可以 确定 重 绘 的 最佳 方式。</li>
+<li>25.4　File API &gt; 位置 24003<br>FileReader 类型 实现 的 是一 种 异步 文件 读取 机制。 可以 把 FileReader 想象 成 XMLHttpRequest， 区别 只是 它 读 取的 是 文件 系统， 而 不是 远程 服务器。 为了 读取 文件 中的 数据， FileReader 提供 了 如下 几个 方法。</li>
+<li>25.4　File API &gt; 位置 24103<br>对象 URL 也 被称为 blob URL， 指的 是 引用 保存 在 File 或 Blob 中 数据 的 URL。 使用 对象 URL 的 好处 是 可以 不必 把 文件 内容 读取 到 JavaScript 中 而 直接 使用 文件 内容。</li>
+<li>25.4　File API &gt; 位置 24128<br>要 手工 释放 内存， 可以 把 对象 URL 传给 window. URL. revokeOjbectURL()（ 在 Chrome 中 是 window. webkitURL. revokeObjectURL()）。</li>
+<li>25.4　File API &gt; 位置 24136<br>支持 对象 URL 的 浏览器 有 IE10+、 Firefox 4 和 Chrome。</li>
+<li>25.4　File API &gt; 位置 24138<br>类似， 从 桌 面上 把 文件 拖放 到 浏览器 中 也会 触发 drop 事件。 而且 可以 在 event. dataTransfer. files 中 读取 到 被 放置 的 文件， 当然 此时 它是 一个 File 对象， 与 通过 文件 输入 字段 取得 的 File 对象 一样。</li>
+<li>25.7　小结 &gt; 位置 24361<br>requestAnimationFrame()： 是 一个 着眼于 优化 JavaScript 动画 的 API， 能够 在 动画 运行 期间 发出 信号。 通过 这种 机制， 浏览器 就能 够 自动 优化 屏幕 重 绘 操作。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2020/02/05/Javascript-booknote/">JavaScript高级程序设计(第3版)</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Leafsu 的个人博客">Leafsu</a></p>
+  <p><span>发布时间:</span>2020年02月05日 - 14:02</p>
+  <p><span>最后更新:</span>2020年02月05日 - 14:02</p>
+  <p><span>原始链接:</span><a href="/2020/02/05/Javascript-booknote/" title="JavaScript高级程序设计(第3版)">https://github.com/leafsu3340.github.io/2020/02/05/Javascript-booknote/</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://github.com/leafsu3340.github.io/2020/02/05/Javascript-booknote/" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
+
+      
+    </div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat_pay.png">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/ali_pay.jpg">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/18/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Leafsu">
+            
+              <p class="site-author-name" itemprop="name">Leafsu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/leafsu3340" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:dadongdeng@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://cn.vuejs.org/" title="vue" target="_blank">vue</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.v2ex.com/" title="印记中文" target="_blank">印记中文</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第1章-BOM"><span class="nav-number">1.</span> <span class="nav-text">第1章  BOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2章-在HTML中使用JavaScript"><span class="nav-number">2.</span> <span class="nav-text">第2章　在HTML中使用JavaScript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第4章-变量、作用域和内存问题"><span class="nav-number">3.</span> <span class="nav-text">第4章　变量、作用域和内存问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第8章-BOM"><span class="nav-number">4.</span> <span class="nav-text">第8章　BOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第9章-客户端检测"><span class="nav-number">5.</span> <span class="nav-text">第9章　客户端检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第10章-DOM"><span class="nav-number">6.</span> <span class="nav-text">第10章　DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第11章-DOM扩展"><span class="nav-number">7.</span> <span class="nav-text">第11章　DOM扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第12章-DOM2和DOM3"><span class="nav-number">8.</span> <span class="nav-text">第12章　DOM2和DOM3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第13章-事件"><span class="nav-number">9.</span> <span class="nav-text">第13章　事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第15章-使用Canvas绘图"><span class="nav-number">10.</span> <span class="nav-text">第15章　使用Canvas绘图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第16章-HTML5脚本编程"><span class="nav-number">11.</span> <span class="nav-text">第16章　HTML5脚本编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第17章-错误处理与调试"><span class="nav-number">12.</span> <span class="nav-text">第17章　错误处理与调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第20章-JSON"><span class="nav-number">13.</span> <span class="nav-text">第20章　JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第21章-Ajax与Comet"><span class="nav-number">14.</span> <span class="nav-text">第21章　Ajax与Comet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第22章-高级技巧"><span class="nav-number">15.</span> <span class="nav-text">第22章　高级技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第23章-离线应用与客户端存储"><span class="nav-number">16.</span> <span class="nav-text">第23章　离线应用与客户端存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第24章-最佳实践"><span class="nav-number">17.</span> <span class="nav-text">第24章　最佳实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第25章-新兴的API"><span class="nav-number">18.</span> <span class="nav-text">第25章　新兴的API</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leafsu</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共10.7k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
